@@ -9,3 +9,4 @@ pymupdf
 sentence-transformers
 chromadb
 python-dotenv
+langchain-chroma
