@@ -3,35 +3,45 @@ from src.ingestion.text_splitter import split_documents
 from src.retrieval.vector_store import VectorStore
 from src.config import settings
 from langchain_core.documents import Document
-from src.retrieval.retriever import RAGRetriever
-from src.generation.llm_service import get_llm
-from src.generation.prompts import get_rag_prompt
+from src.pipeline import rag_pipeline
+import argparse
 
-# Loading and converting pdf to langchain documents -> List[Document]
-documents = pdf_loader(settings.RAW_DOCS_DIR)
+def run_ingestion(vector_store:VectorStore):
+    """"Loading PDFs and storing them in VectorDB"""
+    print("---Ingestion Started---\n")
+    documents = pdf_loader(settings.RAW_DOCS_DIR)
+    chunks = split_documents(documents=documents)
+    vector_store.index_documents(chunks)
+    print("---Ingestion Completed---\n")
 
-# Splitting documents into smaller chunks -> List[Document]
-chunks = split_documents(documents=documents)
+def main():
+    
+    parser = argparse.ArgumentParser(description="Advanced RAG Document Engine")
+    parser.add_argument(
+        "--ingest",
+        action="store_true",
+        help="Run Document ingestion (load, split, embed, store) before quering"
+    )
+    parser.add_argument(
+        "--query",
+        type=str,
+        default="",
+        help="The query to ask the RAG pipeline"
+    )
 
-# Storing in Vector DB
-vector_store = VectorStore()
-
-vector_store.index_documents(documents=chunks)
-
-# Retrieve
-retriever = RAGRetriever(vector_store=vector_store)
-query = "What is probability"
-results= retriever.retrieve(query=query)
-
-formated_context = "\n\n".join([doc['content']for doc in results]) if results else ""
-prompt_template = get_rag_prompt()
-formatted_prompt = prompt_template.invoke({
-    "context":formated_context,
-    "question":query
-})
-
-llm = get_llm()
-response = llm.invoke(formatted_prompt)
-print(response.content)
-
-
+    args = parser.parse_args()
+    
+    vector_store = VectorStore()
+    
+    if args.ingest:
+        run_ingestion(vector_store=vector_store)
+        
+    chain = rag_pipeline(vector_store=vector_store)
+    print(f"\nAsking question: {args.query}")
+    answer = chain.invoke(args.query)
+    
+    print("\n ===Final Answer===")
+    print(answer)
+    
+if __name__ == "__main__":
+    main()
