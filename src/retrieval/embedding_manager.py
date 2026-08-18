@@ -13,7 +13,7 @@ def get_embeddings_model() -> HuggingFaceEmbeddings:
         
     embeddings = HuggingFaceEmbeddings(
         model_name = settings.EMBEDDING_MODEL_NAME,
-        model_kwags={"device":device},
+        model_kwargs={"device":device},
         encode_kwargs = {"normalize_embeddings":True}
     )
     
