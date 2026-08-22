@@ -1,0 +1,43 @@
+[
+    {
+        "question": "What is the Origin of Statistics?",
+        "ground_truth":"The origin of statistics was due to administrative requirements of a state.Administration of a state required the collection and analysis of data relating to population and material wealth of the country. One of the earliest census of population and wealth was held in Egypt as early as 3050 BC for the creation of pyramids. The first census in India was held in 1872"
+    },
+    {
+        "question":"What is Histogram?",
+        "ground_truth":"A histogram is a chart made of bars of different heights"
+    },
+    {
+        "question":"What is EDA?",
+        "ground_truth":"Techniques to determine relationships and trends, identify outliers and influential observations, and quickly describe or summarize data sets."
+    },
+    {
+        "question":"What is Probability?",
+        "ground_truth":"A quantitative measure of uncertainty.A measure of the strength of belief in the occurrence of an uncertain event.A measure of the degree of chance or likelihood of occurrence of an uncertain event.Measured by a number between 0 and 1 (or between 0% and 100%)."
+    },
+    {
+        "question":"What is Random Variable?",
+        "ground_truth":"In general, a random Variable is a numerical version of sample space. It assign a real value to each and every outcome of sample space, that is, mathematically, it is a function X : Ω → R"
+    },
+    {
+        "question":"What is CDF?",
+        "ground_truth":"The cumulative distribution function (cdf) or distribution function, F (x) = FX (x) of a discrete random variable X is defined as F (x) = P(X ≤ x)"
+    },
+    {
+        "question":"what is continuous random variable?",
+        "ground_truth":"A continuous random variable is a random variable that can take on any value in an interval of numbers."
+    },
+    {
+        "question":"What is Bernoulli Distribution",
+        "ground_truth":"A Bernoulli trial is an experiment which can have only two possible outcomes, for examples, success and failure, true and false, yes and no, head or tails, among many others"
+    },
+    {
+        "question":"What is Gamma Distribution?",
+        "ground_truth":"Gamma Distribution is one of the distributions, which is widely used in the field of Business, Science and Engineering, in order to model the continuous variable that should have a positive and skewed distribution. It is generalized over the exponential distribution."
+    },
+    {
+        "question":"What is MLE?",
+        "ground_truth":"The maximum likelihood estimation (MLE) is a method of estimating the parameters of an assumed probability distribution, given some observed data. This is achieved by maximizing a likelihood function so that, under the assumed statistical model, the observed data is most probable."
+    }
+    
+]

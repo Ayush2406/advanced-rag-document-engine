@@ -36,12 +36,12 @@ def main():
     if args.ingest:
         run_ingestion(vector_store=vector_store)
         
-    chain = rag_pipeline(vector_store=vector_store)
-    print(f"\nAsking question: {args.query}")
-    answer = chain.invoke(args.query)
-    
-    print("\n ===Final Answer===")
-    print(answer)
+    if args.query:
+        chain = rag_pipeline(vector_store=vector_store)
+        print(f"\nAsking question: {args.query}")
+        answer = chain.invoke(args.query)
+        print("\n ===Final Answer===")
+        print(answer)
     
 if __name__ == "__main__":
     main()

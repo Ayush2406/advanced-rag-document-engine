@@ -10,3 +10,6 @@ sentence-transformers
 chromadb
 python-dotenv
 langchain-chroma
+ragas
+datasets
+pandas
